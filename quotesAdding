@@ -1,0 +1,29 @@
+import csv
+import pandas as pd
+import os
+
+col_list = ["VehicleNumber", "r_Time", "Date", "Time", "Day"]
+
+
+for i in range(13, 14):
+    fname=str(i)+"_data.csv"
+    print(fname)
+    with open(os.path.join(r"C:/Users/Tanya/Desktop/DS_thesis/Clean_thesis", fname), "r") as f:
+        df = pd.read_csv(f, delimiter=",")
+        print(df)
+        #df.VehicleNumber = df.VehicleNumber.astype(str)
+        #df2=df.loc[:, ['VehicleNumber', 'r_Time', 'Date', 'Time', 'Day']] 
+        df.update('"' + df[['VehicleNumber', 'r_Time', 'Date', 'Time', 'Day']].astype(str) + '"')
+        print(df)
+        df.to_csv(os.path.join(r"C:/Users/Tanya/Desktop/DS_thesis/tram_fix", fname), quoting=csv.QUOTE_NONE, index=False)
+        #df2.to_csv(f, index=False, quotechar='"',
+         #            header=None, quoting=csv.QUOTE_NONNUMERIC)
+
+
+
+
+#for i in range(1, 17):
+ #   with open("C:/Users/Tanya/Desktop/DS_thesis/tram_fixed/'tr_'+str(i)+'.csv'", "r") as f:
+  #      reader = csv.reader(f, delimiter="\t")
+    #for i, line in enumerate(reader):
+       # print 'line[{}] = {}'.format(i, line)
