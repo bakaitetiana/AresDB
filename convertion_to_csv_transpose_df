@@ -1,0 +1,15 @@
+import pandas as pd
+import csv
+
+json_data = pd.read_json("02_1_data.json")
+json_data.result.to_json('tmp_json.json')
+json_data = pd.read_json("tmp_json.json")
+df2 = pd.DataFrame(data=json_data)
+#df2
+df2_transposed = df2.T # or df2.transpose()
+#df2_transposed
+df2_transposed.to_csv (r'02_1_data.csv', index = False, header=True)
+# with open('04_data.csv', 'w', newline='') as file:
+#    writer = csv.writer(file, delimiter=',')
+#    writer.writerows(df2_transposed)
+# json_data.head()
